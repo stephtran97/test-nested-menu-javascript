@@ -47,12 +47,13 @@ const setActiveNavItem = (navItem) => {
   const currentLevel = navItem.dataset.subMenuLevel;
   if (isActive) {
     navItem.classList.remove("active");
+    resetStateAtLevel((Number(currentLevel) - 1).toString());
   } else {
     removeActiveAtLevel(currentLevel);
     removeDisplayAtLevel(currentLevel);
     navItem.classList.add("active");
+    resetStateAtLevel(currentLevel);
   }
-  resetStateAtLevel(currentLevel);
   if (navItem.classList.contains("submenu-heading")) {
     navItem.parentNode.classList.toggle("relative");
     if (navItem.nextElementSibling) {
