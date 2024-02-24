@@ -31,7 +31,7 @@ const saveMenuState = (navItem) => {
 
 const resetStateAtLevel = (menuLevel) => {
   const index = Number(menuLevel);
-  for (let i = index; i < currentMenusState.length; i++) {
+  for (let i = index + 1; i < currentMenusState.length; i++) {
     currentMenusState[i] = null;
   }
   setCurrentMenusState(currentMenusState);
@@ -47,12 +47,12 @@ const setActiveNavItem = (navItem) => {
   const currentLevel = navItem.dataset.subMenuLevel;
   if (isActive) {
     navItem.classList.remove("active");
-    resetStateAtLevel(currentLevel);
   } else {
     removeActiveAtLevel(currentLevel);
     removeDisplayAtLevel(currentLevel);
     navItem.classList.add("active");
   }
+  resetStateAtLevel(currentLevel);
   if (navItem.classList.contains("submenu-heading")) {
     navItem.parentNode.classList.toggle("relative");
     if (navItem.nextElementSibling) {
